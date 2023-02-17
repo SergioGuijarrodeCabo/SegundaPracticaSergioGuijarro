@@ -26,9 +26,11 @@ namespace SegundaPracticaSergioGuijarro.Controllers
 
         [HttpPost]
         public IActionResult Insert(int Idcomic, string Nombre, string Descripcion, string Imagen)
-        {   
+        {
+            this.repo.InsertComic(Idcomic, Nombre, Descripcion, Imagen);
+
           
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
 

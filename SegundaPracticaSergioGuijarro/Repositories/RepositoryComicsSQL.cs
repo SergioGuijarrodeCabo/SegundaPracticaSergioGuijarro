@@ -73,6 +73,30 @@ namespace SegundaPracticaSergioGuijarro.Repositories
         }
 
 
+        public void InsertComic(int Idcomic, string Nombre, string Imagen, string Descripcion)
+        {
+            SqlParameter pamid = new SqlParameter("@IDCOMIC", Idcomic);
+            this.com.Parameters.Add(pamid);
+            SqlParameter pamnombre = new SqlParameter("@NOMBRE", Nombre);
+            this.com.Parameters.Add(pamnombre);
+            SqlParameter pamimagen = new SqlParameter("@IMAGEN", Imagen);
+            this.com.Parameters.Add(pamimagen);
+            SqlParameter pamdescripcion = new SqlParameter("@DESCRIPCION", Descripcion);
+            this.com.Parameters.Add(pamdescripcion);
+  
+
+
+
+            this.com.CommandType = System.Data.CommandType.StoredProcedure;
+            this.com.CommandText = "SP_INSERT_COMIC";
+
+            this.cn.Open();
+            this.com.ExecuteNonQuery();
+            this.com.Parameters.Clear();
+            this.cn.Close();
+
+
+        }
 
     }
 }

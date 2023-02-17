@@ -2,7 +2,7 @@ using SegundaPracticaSergioGuijarro.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddTransient<IRepositoryComics, RepositoryComicsSQL>();
+builder.Services.AddTransient<IRepositoryComics, RepositoryComicsOracle>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

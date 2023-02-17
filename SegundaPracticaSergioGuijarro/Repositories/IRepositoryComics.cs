@@ -6,8 +6,8 @@ namespace SegundaPracticaSergioGuijarro.Repositories
     {
         public List<Comic> GetComics();
 
-        public int FindLastId();
 
-        public void InsertComic(int Idcomic, string Nombre, string Imagen, string Descripcion);
+
+        public void InsertComic(string Nombre, string Imagen, string Descripcion);
     }
 }

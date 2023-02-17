@@ -19,17 +19,16 @@ namespace SegundaPracticaSergioGuijarro.Controllers
         }
         public IActionResult Insert()
         {
-            int ultimoID = this.repo.FindLastId();
-            ViewData["NUEVOID"] = ultimoID+1;
+         
             return View();
         }
 
         [HttpPost]
-        public IActionResult Insert(int Idcomic, string Nombre, string Descripcion, string Imagen)
+        public IActionResult Insert(string Nombre, string Descripcion, string Imagen)
         {
-            this.repo.InsertComic(Idcomic, Nombre, Descripcion, Imagen);
+            this.repo.InsertComic(Nombre, Descripcion, Imagen);
 
-          
+         
             return RedirectToAction("Index");
         }
 

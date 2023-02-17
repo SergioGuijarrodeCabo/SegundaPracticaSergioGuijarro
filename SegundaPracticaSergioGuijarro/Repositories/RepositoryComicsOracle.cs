@@ -4,15 +4,17 @@ using Oracle.ManagedDataAccess.Client;
 using System.Data;
 
 #region
+
+
 //CREATE OR REPLACE PROCEDURE SP_INSERT_COMIC
-//(P_IDCOMIC COMICS.IDCOMIC%TYPE,
+//(
 //P_NOMBRE COMICS.NOMBRE%TYPE,
 //P_IMAGEN COMICS.IMAGEN%TYPE,
 //P_DESCRIPCION COMICS.DESCRIPCION%TYPE
 //)
 //AS
 //BEGIN
-//INSERT INTO COMICS VALUES(P_IDCOMIC, P_NOMBRE, P_IMAGEN, P_DESCRIPCION);
+//INSERT INTO COMICS VALUES((SELECT IDCOMIC FROM COMICS WHERE IDCOMIC = (SELECT MAX(IDCOMIC) FROM COMICS))+1, P_NOMBRE, P_IMAGEN, P_DESCRIPCION);
 //COMMIT;
 //END;
 
@@ -65,24 +67,12 @@ namespace SegundaPracticaSergioGuijarro.Repositories
         }
 
 
-        public int FindLastId()
+       
+
+
+        public void InsertComic( string Nombre, string Imagen, string Descripcion)
         {
-
-
-            var consulta = from datos in this.tablaComics.AsEnumerable()
-                           select datos;
-
-            int maximo = consulta.Max(z => z.Field<int>("IDCOMIC"));
-
-            return maximo;
-
-        }
-
-
-        public void InsertComic(int Idcomic, string Nombre, string Imagen, string Descripcion)
-        {
-            OracleParameter pamid = new OracleParameter(":P_IDCOMIC", Idcomic);
-            this.com.Parameters.Add(pamid);
+  
             OracleParameter pamnombre = new OracleParameter(":P_NOMBRE", Nombre);
             this.com.Parameters.Add(pamnombre);
             OracleParameter pamimagen = new OracleParameter(":P_IMAGEN", Imagen);

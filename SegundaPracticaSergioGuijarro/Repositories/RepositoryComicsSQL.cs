@@ -4,14 +4,16 @@ using System.Data.SqlClient;
 
 #region
 
+
 //CREATE OR ALTER PROCEDURE SP_INSERT_COMIC
-//(@IDCOMIC int,
+//(
 //@NOMBRE NVARCHAR(150),
 //@IMAGEN NVARCHAR(600),
 //@DESCRIPCION NVARCHAR(500)
 //)
 //AS
-//INSERT INTO COMICS VALUES(@IDCOMIC, @NOMBRE, @IMAGEN, @DESCRIPCION)
+
+//INSERT INTO COMICS VALUES((SELECT IDCOMIC FROM COMICS WHERE IDCOMIC = (SELECT MAX(IDCOMIC) FROM COMICS)), @NOMBRE, @IMAGEN, @DESCRIPCION)
 //GO
 
 
@@ -59,24 +61,12 @@ namespace SegundaPracticaSergioGuijarro.Repositories
         }
 
 
-        public int FindLastId()
+
+
+        public void InsertComic( string Nombre, string Imagen, string Descripcion)
         {
-          
 
-            var consulta = from datos in this.tablaComics.AsEnumerable()   
-                           select datos;
-
-            int maximo = consulta.Max(z => z.Field<int>("IDCOMIC"));
-
-            return maximo;
-
-        }
-
-
-        public void InsertComic(int Idcomic, string Nombre, string Imagen, string Descripcion)
-        {
-            SqlParameter pamid = new SqlParameter("@IDCOMIC", Idcomic);
-            this.com.Parameters.Add(pamid);
+        
             SqlParameter pamnombre = new SqlParameter("@NOMBRE", Nombre);
             this.com.Parameters.Add(pamnombre);
             SqlParameter pamimagen = new SqlParameter("@IMAGEN", Imagen);

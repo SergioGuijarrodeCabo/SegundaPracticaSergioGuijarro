@@ -1,0 +1,19 @@
+﻿<h1>Insertar comic</h1>
+
+<a asp-controller="Hospitales" asp-action="Index">Volver a index</a>
+
+<form method="post">
+    
+    <input type="hidden" name="Idcomic" class="form-control" value="@ViewData["NUEVOID"]" required/>
+     <label>Nombre comic:</label>
+    <input type="text" name="Nombre" class="form-control" required/>
+
+     <label>Descripción comic:</label>
+    <input type="text" name="Descripcion" class="form-control"   required/>
+
+      <label>Imagen comic:</label>
+     <input type="text" name="Imagen" class="form-control"  required/>
+
+    <button class="btn btn-info">Insert</button>
+
+</form>

@@ -1,0 +1,18 @@
+﻿
+
+
+   <a class="nav-link text-dark" asp-area="" asp-controller="Comics" asp-action="Insert">Insertar nuevo cómic</a>
+                      
+<ul data-role="listview" data-view="icons-medium">
+
+    @foreach (Comic comic in Model){
+    <li data-caption="Folders">
+        <ul>
+            <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Images"><img src="@comic.Imagen"/></li>
+            <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images">@comic.Nombre</li>
+            <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents">@comic.Descripcion</li>
+           
+        </ul>
+    </li>}
+  
+</ul>
